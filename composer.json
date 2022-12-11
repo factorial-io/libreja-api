@@ -1,0 +1,21 @@
+{
+  "name": "factorial-io/libreja-api",
+  "description": "PHP lib for libreja API",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^7.4 || ^8.0"
+  },
+  "authors": [
+    {
+      "name": "Yang Wang",
+      "email": "yang@factorial.io"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Factorial\\Libreja\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
+}
