@@ -3,7 +3,7 @@
 namespace Factorial\Libreja\Environment;
 
 /**
- * The test environment.
+ * The live environment.
  */
 class LiveEnvironment extends EnvironmentBase {
 
@@ -11,7 +11,7 @@ class LiveEnvironment extends EnvironmentBase {
    * {@inheritdoc}
    */
   public function baseUrl() {
-    return 'https://fta-release.libreja.com/api';
+    return getenv('LIBEREJA_API_BASE_URL') . '/api';
   }
 
 }
