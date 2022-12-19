@@ -3,14 +3,14 @@
 namespace Factorial\Libreja\Injector;
 
 use Factorial\Libreja\Basic\AccessToken;
-use Factorial\Libreja\Connection\AuthentificationRequest;
+use Factorial\Libreja\Connection\AuthenticationRequest;
 use Factorial\Libreja\Environment\EnvironmentInterface;
 use Factorial\Libreja\LibrejaClient;
 
 /**
  * The authentification injector.
  */
-class AuthentificationInjector {
+class AuthenticationInjector {
 
   /**
    * The http client.
@@ -45,12 +45,12 @@ class AuthentificationInjector {
    *   The http client handle request.
    * @param \Factorial\Libreja\Environment\EnvironmentInterface $environment
    *   The request enviroment.
-   * @param array $credentials
-   *   The authentification credentials.
    * @param \Factorial\Libreja\Basic\AccessToken|null $accessToken
    *   The access token.
+   * @param string[] $credentials
+   *   The authentication credentials.
    */
-  public function __construct(LibrejaClient $client, EnvironmentInterface $environment, array $credentials, $accessToken = null) {
+  public function __construct(LibrejaClient $client, EnvironmentInterface $environment, AccessToken $accessToken = null, array $credentials = []) {
     $this->client = $client;
     $this->environment = $environment;
     $this->credentials = $credentials;
@@ -79,7 +79,7 @@ class AuthentificationInjector {
    *   The access token object.
    */
   private function fetchAccessToken() {
-    $access_token_response = $this->client->execute(new AuthentificationRequest($this->environment, $this->credentials));
+    $access_token_response = $this->client->execute(new AuthenticationRequest($this->environment, $this->credentials));
     return new AccessToken($access_token_response->access_token, $access_token_response->token_type, $access_token_response->expires_in);
   }
 
@@ -93,7 +93,7 @@ class AuthentificationInjector {
    *   Whether auth request.
    */
   private function isAuthRequest(HttpRequestInterface $request) {
-    return $request instanceof AuthentificationRequest;
+    return $request instanceof AuthenticationRequest;
   }
 
   /**

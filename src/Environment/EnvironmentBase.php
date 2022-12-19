@@ -2,40 +2,42 @@
 
 namespace Factorial\Libreja\Environment;
 
+use Factorial\Libreja\Basic\AccessToken;
+
 /**
  * Abstract Libreja environment class.
  */
 abstract class EnvironmentBase implements EnvironmentInterface {
 
   /**
-   * Api authentification token.
+   * Api access token.
    *
-   * @var string
+   * @var \Factorial\Libreja\Basic\AccessToken
    */
-  private $authentificationToken;
+  private $accessToken;
 
   /**
    * Constructor.
    *
-   * @param string $authentificationToken
-   *   The api authentification token.
+   * @param \Factorial\Libreja\Basic\AccessToken|null $accessToken
+   *   The api authentication token.
    */
-  public function __construct(string $authentificationToken = '') {
-    $this->authentificationToken = $authentificationToken;
+  public function __construct(AccessToken $accessToken = null) {
+    $this->accessToken = $accessToken;
   }
 
   /**
-   * Return authentification token.
+   * Return access token.
    *
-   * @return string
-   *   The authentification token.
+   * @return \Factorial\Libreja\Basic\AccessToken
+   *   The access token.
    */
-  public function authentificationToken() {
-    return $this->authentificationToken;
+  public function accessToken() {
+    return $this->accessToken;
   }
 
-  public function setAuthentificationToken(string $authentificationToken) {
-    $this->authentificationToken = $authentificationToken;
+  public function setAccessToken(AccessToken $accessToken) {
+    $this->accessToken = $accessToken;
     return $this;
   }
 }
