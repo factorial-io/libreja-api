@@ -47,12 +47,13 @@ class LibrejaClient {
    *
    * @param \Factorial\Libreja\Environment\EnvironmentInterface $environment
    *   Libreja enviroment.
-   * @param \Factorial\Libreja\Basic\AccessToken $accessToken
-   *   Access token.
    * @param string[] $credentials
    *   API credentials.
+   * @param \Factorial\Libreja\Basic\AccessToken $accessToken
+   *   Access token.
+
    */
-  public function __construct(EnvironmentInterface $environment, AccessToken $accessToken, array $credentials = []) {
+  public function __construct(EnvironmentInterface $environment, array $credentials = [], AccessToken $accessToken = null) {
     $this->environment = $environment;
     $this->accessToken = $accessToken;
     $this->authInjector = new AuthenticationInjector($this, $environment, $accessToken, $credentials);
