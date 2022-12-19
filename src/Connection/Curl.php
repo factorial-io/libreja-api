@@ -54,13 +54,13 @@ class Curl {
    *
    * @param string $option
    *   Opt key.
-   * @param string $value
+   * @param mixed $value
    *   Opt value.
    *
    * @return Curl
    *   Current curl.
    */
-  public function setOpt(string $option, string $value) {
+  public function setOpt(string $option, $value) {
     curl_setopt($this->curl, $option, $value);
     return $this;
   }

@@ -6,6 +6,8 @@ use Factorial\Libreja\Basic\AccessToken;
 use Factorial\Libreja\Connection\Curl;
 use Factorial\Libreja\Environment\EnvironmentInterface;
 use Factorial\Libreja\Exception\HttpException;
+use Factorial\Libreja\Exception\IOException;
+use Factorial\Libreja\Http\HttpRequestInterface;
 use Factorial\Libreja\Injector\AuthenticationInjector;
 use Factorial\Libreja\Injector\InjectorInterface;
 
@@ -85,7 +87,7 @@ class LibrejaClient {
     foreach ($this->injectors as $inj) {
       $inj->inject($httpRequest);
     }
-    $url = $this->environment->baseUrl() . $httpRequest->path;
+    $url = $this->environment->baseUrl() . $httpRequest->endpoint;
     $formattedHeaders = $this->prepareHeaders($httpRequest->headers);
 
     $curl->setOpt(CURLOPT_URL, $url);
@@ -187,13 +189,13 @@ class LibrejaClient {
       throw new IOException($error, $error_code);
     }
 
+    $header_size = $curl->getInfo(CURLINFO_HEADER_SIZE);
     if (!empty($response_data)) {
-      $response = json_decode($response_data);
+      $response = json_decode(substr($response_data, $header_size), true);
       if (!empty($response['error'])) {
-        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $header_str = substr($response_data, 0, $header_size);
         $headers = $this->headersToArray($header_str);
-        throw new HttpException($response['error'], $status_code, $headers);
+        throw new HttpException($response['error']['message'], $status_code, $headers);
       }
       return $response;
     }

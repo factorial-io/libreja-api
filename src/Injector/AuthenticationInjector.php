@@ -5,12 +5,13 @@ namespace Factorial\Libreja\Injector;
 use Factorial\Libreja\Basic\AccessToken;
 use Factorial\Libreja\Connection\AuthenticationRequest;
 use Factorial\Libreja\Environment\EnvironmentInterface;
+use Factorial\Libreja\Http\HttpRequestInterface;
 use Factorial\Libreja\LibrejaClient;
 
 /**
  * The authentification injector.
  */
-class AuthenticationInjector {
+class AuthenticationInjector implements InjectorInterface {
 
   /**
    * The http client.

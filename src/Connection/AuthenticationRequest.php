@@ -22,7 +22,7 @@ class AuthenticationRequest extends HttpRequestPost {
    * {@inheritdoc}
    */
   public function __construct(EnvironmentInterface $environment, array $data) {
-    parent::__construct('/token/login');
+    parent::__construct('/token/login', $data);
     $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
   }
 }

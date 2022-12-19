@@ -21,7 +21,7 @@ abstract class HttpRequestBase implements HttpRequestInterface {
    *
    * @var string
    */
-  protected $verb = 'GET';
+  public $verb = 'GET';
 
   /**
    * The request headers.
@@ -74,6 +74,15 @@ abstract class HttpRequestBase implements HttpRequestInterface {
       if (empty($this->date[$key])) {
         throw new IOException('Missing parameter: ' . $key);
       }
+    }
+  }
+
+  /**
+   * Clean up unrelated parameters.
+   */
+  public function cleanUpParameters() {
+    foreach ($this->nonParameters as $key) {
+      unset($this->data[$key]);
     }
   }
 

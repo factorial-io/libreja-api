@@ -10,7 +10,7 @@ class HttpRequestPost extends HttpRequestBase {
   /**
    * @inheritdoc.
    */
-  protected $verb = 'POST';
+  public $verb = 'POST';
 
   /**
    * The request body.

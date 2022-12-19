@@ -10,6 +10,6 @@ class HttpRequestPut extends HttpRequestPost {
   /**
    * @inheritdoc.
    */
-  protected $verb = 'PUT';
+  public $verb = 'PUT';
 
 }

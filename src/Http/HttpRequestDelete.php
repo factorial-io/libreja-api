@@ -10,6 +10,6 @@ class HttpRequestDelete extends HttpRequestGet {
   /**
    * @inheritdoc.
    */
-  protected $verb = 'DELETE';
+  public $verb = 'DELETE';
 
 }
