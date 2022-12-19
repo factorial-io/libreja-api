@@ -81,7 +81,7 @@ class AuthenticationInjector implements InjectorInterface {
    */
   private function fetchAccessToken() {
     $access_token_response = $this->client->execute(new AuthenticationRequest($this->environment, $this->credentials));
-    return new AccessToken($access_token_response->access_token, $access_token_response->token_type, $access_token_response->expires_in);
+    return new AccessToken($access_token_response['token']);
   }
 
   /**

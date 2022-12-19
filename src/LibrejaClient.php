@@ -96,14 +96,14 @@ class LibrejaClient {
     $curl->setOpt(CURLOPT_RETURNTRANSFER, 1);
     $curl->setOpt(CURLOPT_HEADER, 1);
 
-    if (!is_null($httpRequest->body)) {
+    if (!empty($httpRequest->data) && isset($httpRequest->body)) {
       if (isset($formatted_headers['content-type']) && $formatted_headers['content-type'] == 'application/json') {
         $body = json_encode($httpRequest->body);
       }
       else {
         $body = http_build_query($httpRequest->body);
       }
-      if (!empty($httpRequest->body)) {
+      if (!empty($body)) {
         $curl->setOpt(CURLOPT_POSTFIELDS, $body);
       }
     }
