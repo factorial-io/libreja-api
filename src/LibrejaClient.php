@@ -122,14 +122,14 @@ class LibrejaClient {
    * Serialize headers.
    */
   private function serializeHeaders(array $headers) {
-    $header_array = [];
+    $headerArray = [];
     if ($headers) {
       foreach ($headers as $key => $val) {
-        $header_array[] = $key . ': ' . $val;
+        $headerArray[] = $key . ': ' . $val;
       }
     }
 
-    return $header_array;
+    return $headerArray;
   }
 
   /**
@@ -137,13 +137,13 @@ class LibrejaClient {
    */
   private function headersToArray($header) {
     $headers = [];
-    $headers_tmp = explode("\r\n", $header);
-    for ($i = 0; $i < count($headers_tmp); ++$i) {
-      if (strlen($headers_tmp[$i]) > 0) {
-        if (strpos($headers_tmp[$i], ':')) {
-          $header_name = substr($headers_tmp[$i], 0, strpos($headers_tmp[$i], ':'));
-          $header_value = substr($headers_tmp[$i], strpos($headers_tmp[$i], ':') + 1);
-          $headers[$header_name] = $header_value;
+    $headersTmp = explode("\r\n", $header);
+    for ($i = 0; $i < count($headersTmp); ++$i) {
+      if (strlen($headersTmp[$i]) > 0) {
+        if (strpos($headersTmp[$i], ':')) {
+          $headerName = substr($headersTmp[$i], 0, strpos($headersTmp[$i], ':'));
+          $headerValue = substr($headersTmp[$i], strpos($headersTmp[$i], ':') + 1);
+          $headers[$headerName] = $headerValue;
         }
       }
     }
@@ -155,23 +155,12 @@ class LibrejaClient {
    * Returns an array representing lower case headers.
    */
   protected function prepareHeaders($headers) {
-    $prepared_headers = array_change_key_case($headers);
-    if (array_key_exists('content-type', $prepared_headers)) {
-      $prepared_headers['content-type'] = strtolower($prepared_headers['content-type']);
+    $preparedHeaders = array_change_key_case($headers);
+    if (array_key_exists('content-type', $preparedHeaders)) {
+      $preparedHeaders['content-type'] = strtolower($preparedHeaders['content-type']);
     }
-    return $prepared_headers;
+    return $preparedHeaders;
   }
-
-  /**
-   * Execute libreja api request.
-   *
-   * @param \Factorial\Libreja\Http\HttpRequestInterface $http_request
-   *   Current request.
-   *
-   * @return array|null
-   *   The api response.
-   */
-
 
   /**
    * Parse response.
@@ -180,22 +169,22 @@ class LibrejaClient {
    * @throws \Factorial\Libreja\Exception\IOException
    */
   private function parseResponse($curl) {
-    $response_data = $curl->exec();
-    $status_code = $curl->getInfo(CURLINFO_HTTP_CODE);
-    $error_code = $curl->errNo();
+    $responseData = $curl->exec();
+    $statusCode = $curl->getInfo(CURLINFO_HTTP_CODE);
+    $errorCode = $curl->errNo();
     $error = $curl->error();
 
-    if ($error_code > 0) {
-      throw new IOException($error, $error_code);
+    if ($errorCode > 0) {
+      throw new IOException($error, $errorCode);
     }
 
-    $header_size = $curl->getInfo(CURLINFO_HEADER_SIZE);
-    if (!empty($response_data)) {
-      $response = json_decode(substr($response_data, $header_size), true);
+    $headerSize = $curl->getInfo(CURLINFO_HEADER_SIZE);
+    if (!empty($responseData)) {
+      $response = json_decode(substr($responseData, $headerSize), true);
       if (!empty($response['error'])) {
-        $header_str = substr($response_data, 0, $header_size);
+        $header_str = substr($responseData, 0, $headerSize);
         $headers = $this->headersToArray($header_str);
-        throw new HttpException($response['error']['message'], $status_code, $headers);
+        throw new HttpException($response['error']['message'], $statusCode, $headers);
       }
       return $response;
     }
