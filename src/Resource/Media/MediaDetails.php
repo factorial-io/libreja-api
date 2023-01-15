@@ -5,9 +5,9 @@ namespace Factorial\Libreja\Resource\User;
 use Factorial\Libreja\Http\HttpRequestGet;
 
 /**
- * Get media detail.
+ * Get media details.
  */
-class MediaDetail extends HttpRequestGet {
+class MediaDetails extends HttpRequestGet {
 
   /**
    * {@inheritdoc}
