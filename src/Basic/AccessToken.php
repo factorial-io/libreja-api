@@ -41,7 +41,7 @@ class AccessToken {
    * Check if token expired.
    */
   public function isExpired() {
-    return time() >= $this->createTime + $this->expiresIn;
+    return time() >= $this->createdTime + $this->expiresIn;
   }
 
 }
