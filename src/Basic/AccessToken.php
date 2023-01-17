@@ -31,10 +31,10 @@ class AccessToken {
   /**
    * Constructor.
    */
-  public function __construct($token, $expiresIn = 86400) {
+  public function __construct($token, $createdTime = 0, $expiresIn = 86400) {
     $this->token = $token;
     $this->expiresIn = $expiresIn;
-    $this->createdTime = time();
+    $this->createdTime = $createdTime ? $createdTime : time();
   }
 
   /**
@@ -42,6 +42,13 @@ class AccessToken {
    */
   public function isExpired() {
     return time() >= $this->createdTime + $this->expiresIn;
+  }
+
+  /**
+   * Get created time.
+   */
+  public function getCreated() {
+    return $this->createdTime;
   }
 
 }
