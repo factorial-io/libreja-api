@@ -1,6 +1,6 @@
 <?php
 
-namespace Factorial\Libreja\Resource\User;
+namespace Factorial\Libreja\Resource\Media;
 
 use Factorial\Libreja\Http\HttpRequestGet;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Factorial\Libreja\Resource\User;
+namespace Factorial\Libreja\Resource\Article;
 
 use Factorial\Libreja\Http\HttpRequestPut;
 
