@@ -5,7 +5,7 @@ namespace Factorial\Libreja\Resource\User;
 use Factorial\Libreja\Http\HttpRequestGet;
 
 /**
- * Get user details.
+ * Get alle user per library details.
  */
 class UserListLibrary extends HttpRequestGet {
 

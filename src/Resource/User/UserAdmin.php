@@ -5,7 +5,7 @@ namespace Factorial\Libreja\Resource\User;
 use Factorial\Libreja\Http\HttpRequestGet;
 
 /**
- * Get user details.
+ * Get user Admin.
  */
 class UserAdmin extends HttpRequestGet {
 
