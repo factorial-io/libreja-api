@@ -5,9 +5,9 @@ namespace Factorial\Libreja\Resource\Config;
 use Factorial\Libreja\Http\HttpRequestGet;
 
 /**
- * Get Config.
+ * Get App Config.
  */
-class GetConfig extends HttpRequestGet {
+class AppConfig extends HttpRequestGet {
 
     /**
      * {@inheritdoc}
