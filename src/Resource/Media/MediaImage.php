@@ -13,7 +13,7 @@ class MediaImage extends HttpRequestGet {
    * {@inheritdoc}
    */
   public function __construct($mediaId) {
-    parent::__construct("/media/{$mediaId}/image");
+    parent::__construct("/media/{$mediaId}/image/");
   }
 
 }

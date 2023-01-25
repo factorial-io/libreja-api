@@ -35,3 +35,24 @@ $credentials = [
 $environment = new TestEnvironment();
 $client = new LibrejaClient($environment, $credentials);
 ```
+### Use Admin Client to get Users
+
+```php
+$client = app(LibrejaManagement::class)->adminClient();
+$response_complete_user_list = $client->execute(new UserList());
+$response_users_pro_library = $client->execute(new UserListLibrary(123));
+/**
+{
+  "id": "123",
+  "lastname": " foo",
+  "firstname": "bar"
+},
+{
+  "id": "456",
+  "lastname": " foo2",
+  "firstname": "bar22"
+},
+*/
+```
+
+
