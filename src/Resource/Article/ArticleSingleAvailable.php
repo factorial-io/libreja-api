@@ -2,12 +2,12 @@
 
 namespace Factorial\Libreja\Resource\Article;
 
-use Factorial\Libreja\Http\HttpRequestPut;
+use Factorial\Libreja\Http\HttpRequestPost;
 
 /**
  * Check if the article is available.
  */
-class ArticleSingleAvailable extends HttpRequestPut {
+class ArticleSingleAvailable extends HttpRequestPost {
 
   /**
    * {@inheritdoc}
@@ -19,11 +19,4 @@ class ArticleSingleAvailable extends HttpRequestPut {
     ]);
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function buildRequestData() {
-    parent::buildRequestData();
-    $this->body = json_encode($this->data);
-  }
 }
