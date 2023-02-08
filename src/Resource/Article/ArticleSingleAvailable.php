@@ -15,8 +15,15 @@ class ArticleSingleAvailable extends HttpRequestPut {
   public function __construct($articleId, $startDate, $endDate) {
     parent::__construct("/availability/article/{$articleId}", [
       'date_start' => $startDate,
-      'date_end' =>$endDate,
+      'date_end' => $endDate,
     ]);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function buildRequestData() {
+    parent::buildRequestData();
+    $this->body = json_encode($this->data);
+  }
 }
