@@ -12,8 +12,8 @@ class MediaList extends HttpRequestGet {
   /**
    * {@inheritdoc}
    */
-  public function __construct($libId = 0) {
-    parent::__construct('/media' . ($libId ? ('/library/' . $libId) : '/'));
+  public function __construct($libId = 0, $filter = '') {
+    parent::__construct('/media' . ($libId ? ('/library/' . $libId) : '/') . ($filter ? ('?' . $filter) : '' ) );
   }
 
 }
