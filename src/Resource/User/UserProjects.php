@@ -13,7 +13,7 @@ class UserProjects extends HttpRequestGet {
    * {@inheritdoc}
    */
   public function __construct() {
-    parent::__construct('project/user/current');
+    parent::__construct('/project/user/current');
   }
 
 }
