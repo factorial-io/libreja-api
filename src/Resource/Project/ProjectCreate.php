@@ -2,12 +2,12 @@
 
 namespace Factorial\Libreja\Resource\Project;
 
-use Factorial\Libreja\Http\HttpRequestPut;
+use Factorial\Libreja\Http\HttpRequestPost;
 
 /**
  * Create a new project.
  */
-class ProjectCreate extends HttpRequestPut {
+class ProjectCreate extends HttpRequestPost {
 
   /**
    * {@inheritdoc}
