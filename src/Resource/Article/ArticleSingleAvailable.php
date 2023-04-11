@@ -2,12 +2,12 @@
 
 namespace Factorial\Libreja\Resource\Article;
 
-use Factorial\Libreja\Http\HttpRequestPut;
+use Factorial\Libreja\Http\HttpRequestPost;
 
 /**
  * Check if the article is available.
  */
-class ArticleSingleAvailable extends HttpRequestPut {
+class ArticleSingleAvailable extends HttpRequestPost {
 
   /**
    * {@inheritdoc}
@@ -15,7 +15,7 @@ class ArticleSingleAvailable extends HttpRequestPut {
   public function __construct($articleId, $startDate, $endDate) {
     parent::__construct("/availability/article/{$articleId}", [
       'date_start' => $startDate,
-      'date_end' =>$endDate,
+      'date_end' => $endDate,
     ]);
   }
 

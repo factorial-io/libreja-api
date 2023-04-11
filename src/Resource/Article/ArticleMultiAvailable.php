@@ -13,10 +13,10 @@ class ArticleMultiAvailable extends HttpRequestPut {
    * {@inheritdoc}
    */
   public function __construct($articleIds, $startDate, $endDate) {
-    parent::__construct("/availability/article/multiple", [
+    parent::__construct('/availability/article/multiple', [
       'medium' => $articleIds,
       'date_start' => $startDate,
-      'date_end' =>$endDate,
+      'date_end' => $endDate,
     ]);
   }
 
