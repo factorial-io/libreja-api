@@ -5,9 +5,9 @@ namespace Factorial\Libreja\Resource\User;
 use Factorial\Libreja\Http\HttpRequestGet;
 
 /**
- * Get user details.
+ * Get order details.
  */
-class UserDetails extends HttpRequestGet {
+class OrderCurrent extends HttpRequestGet {
 
   /**
    * {@inheritdoc}
