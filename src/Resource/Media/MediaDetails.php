@@ -12,8 +12,9 @@ class MediaDetails extends HttpRequestGet {
   /**
    * {@inheritdoc}
    */
-  public function __construct($mediaId) {
-    parent::__construct("/media/{$mediaId}");
+  public function __construct($mediaId, $date = null) {
+    parent::__construct("/media/{$mediaId}" . ($date ? ('?' . $date) : '' ) );
+
   }
 
 }
