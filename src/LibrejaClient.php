@@ -97,7 +97,7 @@ class LibrejaClient {
     $curl->setOpt(CURLOPT_HEADER, 1);
 
     if (!empty($httpRequest->data) && isset($httpRequest->body)) {
-      if (isset($formatted_headers['content-type']) && $formatted_headers['content-type'] == 'application/json') {
+      if (isset($formattedHeaders['content-type']) && $formattedHeaders['content-type'] == 'application/json') {
         $body = json_encode($httpRequest->body);
       }
       else {
