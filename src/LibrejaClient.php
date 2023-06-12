@@ -113,7 +113,7 @@ class LibrejaClient {
       $curl->setOpt(CURLOPT_SSL_VERIFYHOST, 2);
     }
 
-    $response = $this->parseResponse($curl);
+    $response = $this->parseResponse($curl, $httpRequest);
     $curl->close();
     return $response;
   }
@@ -165,10 +165,15 @@ class LibrejaClient {
   /**
    * Parse response.
    *
+   * @param \Factorial\Libreja\Connection\Curl $curl
+   *   Curl instance
+   * @param \Factorial\Libreja\Http\HttpRequestInterface $httpRequest
+   *   Current request.
+   *
    * @throws \Factorial\Libreja\Exception\HttpException
    * @throws \Factorial\Libreja\Exception\IOException
    */
-  private function parseResponse($curl) {
+  private function parseResponse($curl, HttpRequestInterface $httpRequest) {
     $responseData = $curl->exec();
     $statusCode = $curl->getInfo(CURLINFO_HTTP_CODE);
     $errorCode = $curl->errNo();
@@ -180,11 +185,16 @@ class LibrejaClient {
 
     $headerSize = $curl->getInfo(CURLINFO_HEADER_SIZE);
     if (!empty($responseData)) {
-      $response = json_decode(substr($responseData, $headerSize), true);
-      if (!empty($response['error'])) {
-        $header_str = substr($responseData, 0, $headerSize);
-        $headers = $this->headersToArray($header_str);
-        throw new HttpException($response['error']['message'], $statusCode, $headers);
+      if ($httpRequest->rawResponse) {
+        $response = substr($responseData, $headerSize);
+      }
+      else {
+        $response = json_decode(substr($responseData, $headerSize), true);
+        if (!empty($response['error'])) {
+          $header_str = substr($responseData, 0, $headerSize);
+          $headers = $this->headersToArray($header_str);
+          throw new HttpException($response['error']['message'], $statusCode, $headers);
+        }
       }
       return $response;
     }

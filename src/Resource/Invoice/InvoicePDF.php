@@ -9,11 +9,18 @@ use Factorial\Libreja\Http\HttpRequestGet;
  */
 class InvoicePDF extends HttpRequestGet {
 
-    /**
-     * {@inheritdoc}
-     */
-    public function __construct($id) {
-        parent::__construct("/pdf/{$id}");
-    }
+  public $rawResponse = true;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct($id) {
+    $this->endpoint = "/pdf/{$id}";
+    $this->data = [];
+    $this->headers = [
+      'Content-Type' => 'application/pdf',
+    ];
+    $this->buildRequestData();
+  }
 
 }
