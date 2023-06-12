@@ -52,6 +52,11 @@ abstract class HttpRequestBase implements HttpRequestInterface {
   protected $requiredParameters = [];
 
   /**
+   * Return raw response.
+   */
+  public $rawResponse = false;
+
+  /**
    * Constructor.
    */
   public function __construct(string $endpoint, array $data = []) {
