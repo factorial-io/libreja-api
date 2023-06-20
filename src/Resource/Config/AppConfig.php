@@ -12,8 +12,7 @@ class AppConfig extends HttpRequestGet {
     /**
      * {@inheritdoc}
      */
-    public function __construct() {
-        parent::__construct('/config');
+    public function __construct($lang = 'de') {
+        parent::__construct("/config?L={$lang}");
     }
-
 }
