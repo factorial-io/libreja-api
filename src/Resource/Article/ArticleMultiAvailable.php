@@ -2,12 +2,12 @@
 
 namespace Factorial\Libreja\Resource\Article;
 
-use Factorial\Libreja\Http\HttpRequestPut;
+use Factorial\Libreja\Http\HttpRequestPost;
 
 /**
  * Check if multi articles are available.
  */
-class ArticleMultiAvailable extends HttpRequestPut {
+class ArticleMultiAvailable extends HttpRequestPost {
 
   /**
    * {@inheritdoc}
