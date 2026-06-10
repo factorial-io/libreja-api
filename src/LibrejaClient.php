@@ -95,6 +95,8 @@ class LibrejaClient {
     $curl->setOpt(CURLOPT_HTTPHEADER, $this->serializeHeaders($formattedHeaders));
     $curl->setOpt(CURLOPT_RETURNTRANSFER, 1);
     $curl->setOpt(CURLOPT_HEADER, 1);
+    $curl->setOpt(CURLOPT_CONNECTTIMEOUT, 10);
+    $curl->setOpt(CURLOPT_TIMEOUT, 30);
 
     if (!empty($httpRequest->data) && isset($httpRequest->body)) {
       if (isset($formattedHeaders['content-type']) && $formattedHeaders['content-type'] == 'application/json') {
